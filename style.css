@@ -1,0 +1,149 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#game_background {
+    background-image: url(img/Background.svg);
+    background-size: 100%;
+    position: relative;
+    top: 0vw;
+    left: 0vw;
+    width: 100vw;
+    height: 56.25vw;
+    z-index: -100;
+}
+
+#mainpoop {
+    background-image: url(img/Main%20Poo.svg);
+    background-size: 100%;
+    position: absolute;
+    width: 30vw;
+    height: 34.5vw;
+    top: 15vw;
+    left: 0vw;
+}
+
+#poo {
+    background-image: url(img/Poo.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 10vw;
+    left: 45vw;
+    width: 10vw;
+    height: 5vw;
+}
+
+
+
+#slimepoop {
+    background-image: url(img/Slimepoop.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 19vw;
+    left: 47vw;
+    width: 10vw;
+    height: 11vw;
+}
+
+#rotte {
+    background-image: url(img/Rotte.svg);
+    background-size: 100%;
+    position: absolute;
+    width: 9vw;
+    height: 11.5vw;
+    top: 19.5vw;
+    left: 30vw;
+}
+
+
+
+#energy {
+    background-image: url(img/Poop%20Hearth.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 1vw;
+    left: 4vw;
+    width: 10vw;
+    height: 10vw;
+}
+
+#energy2 {
+    background-image: url(img/%C2%BD%20Poop%20Hearth.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 1vw;
+    left: 13vw;
+    width: 8vw;
+    height: 10vw;
+}
+
+
+#points {
+    background-image: url(img/Hus%205-5.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 35vw;
+    left: 79vw;
+    width: 20vw;
+    height: 20vw;
+}
+
+#settingsicon {
+    background-image: url(img/Settings.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 1vw;
+    left: 85vw;
+    width: 10vw;
+    height: 10vw;
+}
+
+#settings {
+    background-image: url(img/settingsMenu.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 10vw;
+    left: 22vw;
+    width: 60vw;
+    height: 35vw;
+    overflow: hidden;
+    z-index: -101;
+}
+
+#gameover {
+    background-image: url(img/Gameover.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 10vw;
+    left: 22vw;
+    width: 60vw;
+    height: 36vw;
+    overflow: hidden;
+    z-index: -101;
+}
+
+#menu_background {
+    background-image: url(img/Titelsk%C3%A6rm.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 0vw;
+    left: 0vw;
+    width: 100vw;
+    height: 56.25vw;
+    z-index: -101;
+    overflow: hidden;
+
+}
+
+#levelcomplete {
+    background-image: url(img/Win.svg);
+    background-size: 100%;
+    position: absolute;
+    top: 10vw;
+    left: 22vw;
+    width: 60vw;
+    height: 36vw;
+    overflow: hidden;
+    z-index: -101;
+}
