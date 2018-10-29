@@ -196,6 +196,14 @@
     display: none;
 }
 
+.shake {
+    animation-name: shake;
+    animation-duration: 1.5s;
+    animation-iteration-count: 3;
+    animation-delay: 5s;
+
+}
+
 /* ---------------------Keyframes--------------------  */
 @keyframes eyes {
     0% {
@@ -227,6 +235,10 @@
         transform: translateX(5vw) translateY(-5vw);
     }
 
+    25% {
+        transform: translateY(-13vw);
+    }
+
     50% {
         transform: rotate(25deg);
     }
@@ -251,5 +263,18 @@
         transform: rotatey(360deg);
         opacity: 0;
 
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(360deg);
+    }
+
+
+
+
+    100% {
+        transform: rotate(-360deg);
     }
 }
