@@ -55,7 +55,7 @@ function ratForsvind() {
     console.log("ratForsvind");
 
     document.querySelector("#rotte").classList.add("paused");
-    document.querySelector("#rotte").classList.add("dissappear");
+    document.querySelector("#rotte").classList.add("hide");
 
 }
 document.querySelector("#poo").addEventListener("click", pooForsvind);

@@ -12,6 +12,7 @@
 }
 
 #game_background {
+    overflow: hidden;
     background-image: url(img/Background.svg);
     background-size: 100%;
     position: relative;
@@ -72,6 +73,9 @@
     height: 11.5vw;
     top: 19.5vw;
     left: 30vw;
+    cursor: -webkit-grab;
+    cursor: grab;
+
 
 }
 
