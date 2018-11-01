@@ -42,7 +42,7 @@ function startGame() {
     // skjul startskærm
     document.querySelector("#start").classList.add("hide");
     //Vis spilskærm
-    document.querySelector("#screen").classList.add("show");
+    document.querySelector("#game_background").classList.add("show");
     // poo falder
     document.querySelector("#poo").classList.add("falling");
     //slimepoo falder
@@ -63,28 +63,7 @@ function ratForsvind() {
     document.querySelector("#rotte").classList.add("hide");
 
 }
-// klik på poo
-document.querySelector("#poo").addEventListener("click", pooForsvind);
 
-function pooForsvind() {
-
-    console.log("pooForsvind");
-
-    document.querySelector("#poo").classList.add("paused");
-    document.querySelector("#poo").classList.add("dissappear");
-
-}
-// klik på slime
-document.querySelector("#slimepoop ").addEventListener("click", slimForsvind);
-
-function slimForsvind() {
-
-    console.log("slimForsvind");
-
-    document.querySelector("#slimepoop").classList.add("paused");
-    document.querySelector("#slimepoop").classList.add("dissappear");
-
-}
 
 document.querySelector("#settingsicon").addEventListener("click", showSettings);
 
@@ -97,7 +76,7 @@ function showSettings() {
 
 }
 //klik "X"
-document.querySelector("#exit , #exit2, #exit3").addEventListener("click", hideSettings);
+document.querySelector("#exit").addEventListener("click", hideSettings);
 
 function hideSettings() {
     console.log("hideSettings");
@@ -145,4 +124,48 @@ function levelComplete() {
     console.log("levelComplete");
     document.querySelector("#levelComplete").classList.remove("hide");
     document.querySelector("#levelComplete").classList.add("show");
+}
+
+
+
+
+// klik på poo
+
+
+// klik på slime
+
+
+
+
+document.querySelector("#poo").addEventListener("click", pooForsvind);
+let points = 0;
+
+function pooForsvind() {
+    console.log(this);
+    console.log("pooForsvind");
+    points++;
+    this.classList.add("hide");
+    //giv point!
+    document.querySelector("#points").textContent = points;
+    console.log(points);
+
+
+}
+
+
+
+
+document.querySelector("#slimepoop ").addEventListener("click", slimForsvind);
+
+
+
+function slimForsvind() {
+    console.log("clicSlime");
+    console.log(this);
+    this.classList.add("hide");
+    points--;
+    // TODO: giv point!
+    document.querySelector("#points").textContent = points;
+    console.log(points);
+    // også TODO: Få det til at virke så mønten starter forfra - det må vente
 }
