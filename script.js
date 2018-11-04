@@ -1,5 +1,5 @@
 window.addEventListener("load", sidenVises);
-let life = 2;
+let life = 3;
 let points = 0;
 
 function sidenVises() {
@@ -10,6 +10,8 @@ function sidenVises() {
 
 function showStart() {
     console.log("ShowStart");
+    document.querySelector("#game_background").classList.remove("blur");
+    document.querySelector("#levelComplete").classList.add("hide");
     document.querySelector("#start").classList.remove("hide");
     document.querySelector("#start").classList.remove("menu_just_do_it");
     // Vis Startskærm
@@ -55,21 +57,40 @@ function startGame() {
     document.querySelector("#rotte").classList.remove("hide");
 
 }
+//fjerner et hjerte når rotten er done med sin animation
+document.querySelector("#rotte").addEventListener("animationend", rotteSpis);
+
+function rotteSpis() {
+    life--;
+    console.log(life);
+    document.querySelector("#energy" + life).classList.remove("energy");
+    this.classList.add("hide")
+    document.querySelector("#mainpoop").classList.add("shake");
+
+}
+
 
 
 document.querySelector("#rotte").addEventListener("click", ratForsvind);
 
 function ratForsvind() {
 
-
     console.log("ratForsvind");
     //rotte på pause
-    document.querySelector("#rotte").classList.add("paused");
-    //rotte forsvinder
+
+    document.querySelector("#rotte").classList.remove("ret_race");
     document.querySelector("#rotte").classList.add("hide");
+    //rotte forsvinder
+
 
 }
 
+function nyRotte() {
+    document.querySelector("#rotte").classList.remove("hide");
+    document.querySelector("#rotte").classList.add("rat_race");
+
+
+}
 
 document.querySelector("#settingsicon").addEventListener("click", showSettings);
 
@@ -104,7 +125,7 @@ function hideSettings() {
 document.querySelector("#points").addEventListener("click", gameOver);
 //------------------------------------------------------------------------
 function gameOver() {
-    console.log("gameOver")
+    console.log("gameOver");
 
     document.querySelector("#gameOver").classList.remove("hide");
     document.querySelector("#game_background").classList.add("blur");
@@ -112,29 +133,35 @@ function gameOver() {
     document.querySelector("#slimepoop").classList.add("paused");
     document.querySelector("#poo").classList.add("paused");
 
+
 }
+document.querySelector("#restart1").addEventListener("click", restartGame);
 document.querySelector("#restart").addEventListener("click", restartGame);
 
 function restartGame() {
     console.log("restartGame");
 
-    document.querySelector("#gameOver").classList.add("hide");
-    document.querySelector("#game_background").classList.remove("blur");
-    document.querySelector("#levelComplete").classList.add("hide");
+    //document.querySelector("#gameOver").classList.add("hide");
+    //document.querySelector("#game_background").classList.remove("blur");
+    //document.querySelector("#levelComplete").classList.add("hide");
+    location.reload();
 
 
 
     showStart();
 }
 // BARE INDTIL VIDERE ----------------------------------------------------
-document.querySelector("#energy1").addEventListener("click", levelComplete);
+document.querySelector("#energy").addEventListener("click", levelComplete);
 //------------------------------------------------------------------------
 function levelComplete() {
     console.log("levelComplete");
     document.querySelector("#levelComplete").classList.remove("hide");
     document.querySelector("#levelComplete").classList.add("show");
     document.querySelector("#game_background").classList.add("blur");
+    document.querySelector("#restart").addEventListener("click", restartGame);
+
 }
+
 
 
 
@@ -182,13 +209,11 @@ function nyPoo() {
 document.querySelector("#slimepoop ").addEventListener("click", slimForsvind);
 
 
-
 function slimForsvind() {
     console.log("clicSlime");
     this.classList.add("dissappear");
     points--;
     // TODO: giv point!
-
     console.log(points);
     // også TODO: Få det til at virke så mønten starter forfra - det må vente
     gameStatus();
@@ -206,7 +231,7 @@ function nySlimePooP() {
 }
 
 function gameStatus() {
-    console.log("gameStatus")
+    console.log("gameStatus");
     if (points == 0) {
         hus0();
     } else if (points == 1) {
@@ -219,6 +244,7 @@ function gameStatus() {
         hus4();
     } else if (points == 5) {
         hus5();
+        levelComplete();
     }
 }
 
