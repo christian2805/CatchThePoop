@@ -49,23 +49,18 @@
 }
 
 #poo {
-
     position: absolute;
-
-
-}
-
-.poo_sprite {
     background-image: url(img/Poo.svg);
     background-size: 100%;
-    top: -10vw;
-    left: 45vw;
     width: 10vw;
     height: 5vw;
     cursor: -webkit-grab;
     cursor: grab;
 
+
 }
+
+.poo_sprite {}
 
 
 
@@ -105,7 +100,7 @@
 
 }
 
-#energy {
+#energy1 {
     background-image: url(img/Poop%20Hearth.svg);
     background-size: 100%;
     position: absolute;
@@ -117,19 +112,68 @@
 }
 
 #energy2 {
-    background-image: url(img/%C2%BD%20Poop%20Hearth.svg);
+    background-image: url(img/Poop%20Hearth.svg);
     background-size: 100%;
     position: absolute;
     top: 1vw;
-    left: 13vw;
-    width: 8vw;
+    left: 14vw;
+    width: 10vw;
     height: 10vw;
 }
 
-
-#points {
+/*   Huse / points    */
+.points5 {
     background-image: url(img/Hus%205-5.svg);
     background-size: 100%;
+    font-size: 40px;
+    position: absolute;
+    top: 35vw;
+    left: 79vw;
+    width: 20vw;
+    height: 20vw;
+    cursor: help;
+}
+
+.points4 {
+    background-image: url(img/Hus%204-5.svg);
+    background-size: 100%;
+    font-size: 40px;
+    position: absolute;
+    top: 35vw;
+    left: 79vw;
+    width: 20vw;
+    height: 20vw;
+    cursor: help;
+}
+
+.points3 {
+    background-image: url(img/Hus%203-5.svg);
+    background-size: 100%;
+    font-size: 40px;
+    position: absolute;
+    top: 35vw;
+    left: 79vw;
+    width: 20vw;
+    height: 20vw;
+    cursor: help;
+}
+
+.points2 {
+    background-image: url(img/Hus%202-5.svg);
+    background-size: 100%;
+    font-size: 40px;
+    position: absolute;
+    top: 35vw;
+    left: 79vw;
+    width: 20vw;
+    height: 20vw;
+    cursor: help;
+}
+
+.points1 {
+    background-image: url(img/Hus%201-5.svg);
+    background-size: 100%;
+    font-size: 40px;
     position: absolute;
     top: 35vw;
     left: 79vw;
@@ -251,6 +295,18 @@
     z-index: 100;
 }
 
+.restart1 {
+    position: absolute;
+    width: 16vw;
+    height: 16vw;
+    background-image: url(img/restart.svg);
+    background-size: 100%;
+    left: 45vw;
+    top: 20vw;
+    cursor: pointer;
+    z-index: 100;
+}
+
 .hide {
     display: none;
 }
@@ -261,6 +317,58 @@
 
 .paused {
     animation-play-state: paused;
+}
+
+
+
+.position1 {
+    left: 47vw;
+    top: -22vw;
+}
+
+.position2 {
+    left: 33vw;
+    top: -8vw;
+}
+
+.position3 {
+    left: 34vw;
+    top: -5vw;
+}
+
+.position4 {
+    left: 19vw;
+    top: -11vw;
+}
+
+.position5 {
+    left: 5vw;
+    top: -10vw;
+}
+
+.position6 {
+    left: 63vw;
+    top: -10vw;
+}
+
+.position7 {
+    left: 52vw;
+    top: -0vw;
+}
+
+.position8 {
+    left: 68vw;
+    top: -12vw;
+}
+
+.position9 {
+    left: 78vw;
+    top: -10vw;
+}
+
+.position10 {
+    left: 80vw;
+    top: -10vw;
 }
 
 /*--------------------- Class tags til animation -------------------------*/
@@ -282,7 +390,7 @@
 
 .falling {
     animation-name: fall_down;
-    animation-duration: 5s;
+    animation-duration: 7s;
     animation-iteration-count: infinite;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
@@ -334,7 +442,7 @@
 
 .dissappear {
     animation-name: dissappear_kf;
-    animation-duration: .7s;
+    animation-duration: 1.7s;
     animation-iteration-count: 1;
     animation-timing-function: cubic-bezier(.59, -0.56, .77, 1.34);
     animation-fill-mode: forwards;
