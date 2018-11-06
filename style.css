@@ -75,17 +75,52 @@
     cursor: pointer;
 }
 
+
+
 #rotte {
-    background-image: url(img/Rotte.svg);
-    background-size: 100%;
     position: absolute;
     width: 9vw;
     height: 11.5vw;
-    top: 19.5vw;
-    left: 30vw;
+    background-image: url(img/Rotte.svg);
+    background-size: 100%;
     cursor: -webkit-grab;
     cursor: grab;
 
+}
+
+.pos1 {
+    top: 19.5vw;
+    left: 31vw;
+
+}
+
+.pos2 {
+    top: 19.5vw;
+    left: 32vw;
+
+}
+
+
+#rotte1 {
+    position: absolute;
+    width: 9vw;
+    height: 11.5vw;
+    background-image: url(img/Rotte.svg);
+    background-size: 100%;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+#rotte2 {
+    top: 19.5vw;
+    left: 30vw;
+    position: absolute;
+    width: 9vw;
+    height: 11.5vw;
+    background-image: url(img/Rotte.svg);
+    background-size: 100%;
+    cursor: -webkit-grab;
+    cursor: grab;
 
 }
 
@@ -106,7 +141,6 @@
     width: 10vw;
     height: 10vw;
     cursor: grab;
-
 }
 
 #energy {
@@ -120,6 +154,11 @@
 
 
 /*   Huse / points    */
+
+#points {
+    color: aliceblue;
+}
+
 .points5 {
     background-image: url(img/Hus%205-5.svg);
     background-size: 100%;
@@ -223,8 +262,6 @@
     left: 0vw;
     width: 100vw;
     height: 56.25vw;
-
-
 }
 
 #play {
@@ -321,7 +358,7 @@
 
 .position1 {
     left: 47vw;
-    top: -22vw;
+    top: -10vw;
 }
 
 .position2 {
@@ -331,7 +368,7 @@
 
 .position3 {
     left: 34vw;
-    top: -5vw;
+    top: -10vw;
 }
 
 .position4 {
@@ -340,7 +377,7 @@
 }
 
 .position5 {
-    left: 5vw;
+    left: 35vw;
     top: -10vw;
 }
 
@@ -351,7 +388,7 @@
 
 .position7 {
     left: 52vw;
-    top: -0vw;
+    top: -8vw;
 }
 
 .position8 {
@@ -365,7 +402,7 @@
 }
 
 .position10 {
-    left: 80vw;
+    left: 50vw;
     top: -10vw;
 }
 

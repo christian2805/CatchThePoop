@@ -57,37 +57,59 @@ function startGame() {
     document.querySelector("#rotte").classList.remove("hide");
 
 }
-//fjerner et hjerte når rotten er done med sin animation
+//fjerner et hjerte når rotten er færdig med sin animation
 document.querySelector("#rotte").addEventListener("animationend", rotteSpis);
 
 function rotteSpis() {
+    console.log("spist")
     life--;
     console.log(life);
     document.querySelector("#energy" + life).classList.remove("energy");
-    this.classList.add("hide")
+    document.querySelector("#rotte").classList.add("fade_out")
+    document.querySelector("#mainpoop").classList.remove("shake");
     document.querySelector("#mainpoop").classList.add("shake");
+    nyRotte();
+    livStatus();
+
 
 }
 
 
 
-document.querySelector("#rotte").addEventListener("click", ratForsvind);
+document.querySelector("#rotte").addEventListener("click", clickRotte);
 
-function ratForsvind() {
+
+function clickRotte() {
 
     console.log("ratForsvind");
     //rotte på pause
+    this.classList.add("fade_out");
+    this.classList.add("pause");
+    this.classList.remove("rat_race");
+    this.classList.remove("pos1");
 
-    document.querySelector("#rotte").classList.remove("ret_race");
-    document.querySelector("#rotte").classList.add("hide");
     //rotte forsvinder
+
+    document.querySelector("#rotte").addEventListener("animationend", nyRotte);
+
 
 
 }
 
 function nyRotte() {
-    document.querySelector("#rotte").classList.remove("hide");
+
+
+
+    console.log("nyRotte");
+    let posNr = Math.floor((Math.random() * 2) + 1);
+    document.querySelector("#rotte").classList.add("pos" + posNr);
+    document.querySelector("#rotte").classList.remove("fade_out");
+    document.querySelector("#rotte").classList.remove("pause");
+    document.querySelector("#rotte").classList.remove("rat_race");
     document.querySelector("#rotte").classList.add("rat_race");
+    document.querySelector("#rotte").classList.add("show");
+    console.log(posNr);
+
 
 
 }
@@ -113,7 +135,7 @@ function hideSettings() {
     document.querySelector("#gameOver").classList.add("hide");
     // fjern settings menu
     document.querySelector("#levelComplete").classList.add("hide");
-    // fjern blur på titelscreen'
+    // fjern blur på tintelscreen'
     document.querySelector("#start").classList.remove("blur");
     // fjern menu gameOver
     document.querySelector("#gameOver").classList.add("hide");
@@ -159,9 +181,7 @@ function levelComplete() {
     document.querySelector("#levelComplete").classList.add("show");
     document.querySelector("#game_background").classList.add("blur");
     document.querySelector("#restart").addEventListener("click", restartGame);
-
 }
-
 
 
 
@@ -169,8 +189,6 @@ function levelComplete() {
 
 
 // klik på slime
-
-
 
 
 document.querySelector("#poo").addEventListener("click", clickPoo);
@@ -181,7 +199,7 @@ function clickPoo() {
     console.log("clickPoo");
     points++;
     document.querySelector("#points").innerHTML = points;
-
+    this.classList.add("pause");
     this.classList.add("dissappear");
     //giv point!
     document.querySelector("#points").textContent = points;
@@ -200,22 +218,24 @@ function nyPoo() {
     let positionNr = Math.floor((Math.random() * 10) + 1);
     document.querySelector("#poo").classList.add("position" + positionNr);
     document.querySelector("#poo").classList.remove("dissappear");
+    document.querySelector("#poo").classList.remove("pause");
+
 
 
 }
-
 
 
 document.querySelector("#slimepoop ").addEventListener("click", slimForsvind);
 
 
 function slimForsvind() {
-    console.log("clicSlime");
+    console.log("clickSlime");
     this.classList.add("dissappear");
     points--;
+    document.querySelector("#points").innerHTML = points;
     // TODO: giv point!
     console.log(points);
-    // også TODO: Få det til at virke så mønten starter forfra - det må vente
+
     gameStatus();
 
 
@@ -228,6 +248,12 @@ function nySlimePooP() {
     document.querySelector("#slimepoop").classList.add("position" + positionNr);
     document.querySelector("#slimepoop").classList.remove("dissappear");
 
+}
+
+function livStatus() {
+    if (life == 0) {
+        gameOver();
+    }
 }
 
 function gameStatus() {
@@ -282,13 +308,13 @@ function hus4() {
     document.querySelector("#points").classList.add("points4");
     document.querySelector("#points").classList.remove("points3");
     document.querySelector("#points").classList.remove("points5");
-    console.log("hus2");
+    console.log("hus4");
 
 }
 
 function hus5() {
     document.querySelector("#points").classList.add("points5");
     document.querySelector("#points").classList.remove("points4");
-    console.log("hus2");
+    console.log("hus5");
 
 }
