@@ -16,7 +16,7 @@
 
             <div id="game_elements">
                 <div id="mainpoop" class=""></div>
-                <div id="poo" class="poo position4"></div>
+                <div id="poo" class="poo position4" class="poo_sprite"></div>
                 <div id="slimepoop" class="position2"></div>
                 <div id="rotte" class="hide pos1"></div>
                 <!--<div id="rotte1" class="pos2" class="hide"></div>-->
@@ -34,7 +34,10 @@
 
 
                 </div>
-                <div id="time"></div>
+                <audio src="Lyd/Lort-2.m4a" id="lort"></audio>
+
+
+                <div id="time">30</div>
             </div>
         </div>
         <div id="start" class="">
@@ -42,7 +45,36 @@
 
             <div id="settingsicon"></div>
         </div>
-        <div id="settings" class="hide">
+        <!--Settings -->
+        <div id="settings_screen" class="hide">
+            <div id="setting_effekt_sound">
+
+                <h1></h1>
+                <div id="sfx" class="on">
+                    <div id="sfx_sprite"></div>
+                </div>
+            </div>
+            <div id="setting_music">
+                <h1></h1>
+                <div id="music" class="on">
+                    <div id="music_sprite"></div>
+                </div>
+
+            </div>
+            <div id="setting_close">
+
+                <audio id="musik">
+                    <audio src="Lyd/intro_mixxdown.mp3" id="intro"></audio>
+                </audio>
+
+                <audio id="hapshaps">
+                    <source src="lyde/hapshaps.mp3" type="audio/mpeg">
+                </audio>
+
+                <audio id="prut1">
+                    <source src="lyde/prut1.mp3" type="audio/mpeg">
+                </audio>
+            </div>
             <div id="exit"></div>
         </div>
         <div id="gameOver" class="hide">

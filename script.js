@@ -1,6 +1,8 @@
 window.addEventListener("load", sidenVises);
 let life = 3;
 let points = 0;
+let timeleft = 30;
+
 
 function sidenVises() {
     console.log("sidenVises");
@@ -23,7 +25,6 @@ function showStart() {
     document.querySelector("#slimepoop").classList.remove("paused");
     document.querySelector("#poo").classList.remove("paused");
 
-
 }
 
 // klik på start-knap
@@ -43,6 +44,7 @@ function hideStart() {
 document.querySelector("#start").addEventListener("animationend", startGame);
 
 function startGame() {
+    document.querySelector("#intro").play();
     console.log("startGame");
     // skjul startskærm
     document.querySelector("#start").classList.add("hide");
@@ -55,82 +57,81 @@ function startGame() {
     //rat går igang
     document.querySelector("#rotte").classList.add("rat_race");
     document.querySelector("#rotte").classList.remove("hide");
-
+    document.querySelector("#rotte").addEventListener("animationend", tjekRotte);
+    document.querySelector("#rotte").addEventListener("click", clickRotte);
+    tidenGaar();
 }
 //fjerner et hjerte når rotten er færdig med sin animation
-document.querySelector("#rotte").addEventListener("animationend", rotteSpis);
+
 
 function rotteSpis() {
-    console.log("spist")
+    console.log("spist");
     life--;
     console.log(life);
     document.querySelector("#energy" + life).classList.remove("energy");
-    document.querySelector("#rotte").classList.add("fade_out")
-    document.querySelector("#mainpoop").classList.remove("shake");
+    //    this.classList.add("dissappear")
     document.querySelector("#mainpoop").classList.add("shake");
-    nyRotte();
+    document.querySelector("#rotte").classList.add("dissappear");
+    document.querySelector("#rotte").classList.remove("rat_race");
+    document.querySelector("#rotte").addEventListener("animationend", nyRotte);
+
     livStatus();
-
-
+    //    nyRotte();
 }
 
+function tjekRotte() {
+    document.querySelector("#rotte").removeEventListener("animationend", tjekRotte);
+    if (document.querySelector("#rotte").classList.contains("rat_race")) {
+        rotteSpis();
+    }
+}
 
-
-document.querySelector("#rotte").addEventListener("click", clickRotte);
+//document.querySelector("#rotte").addEventListener("click", clickRotte);
 
 
 function clickRotte() {
 
-    console.log("ratForsvind");
+    console.log("ratforsvind");
     //rotte på pause
-    this.classList.add("fade_out");
-    this.classList.add("pause");
+
+    //    this.classList.add("pause");
+    this.classList.add("dissappear");
     this.classList.remove("rat_race");
-    this.classList.remove("pos1");
+    document.querySelector("#rotte").addEventListener("animationend", nyRotte);
+    tjekRotte();
+
 
     //rotte forsvinder
-
-    document.querySelector("#rotte").addEventListener("animationend", nyRotte);
-
 
 
 }
 
 function nyRotte() {
+    console.log("nyrotte");
+    document.querySelector("#rotte").removeAttribute("class");
+    document.querySelector("#mainpoop").classList.remove("shake");
+    nyeRotte();
+}
 
-
-
-    console.log("nyRotte");
+function nyeRotte() {
+    console.log("nyeRotte");
     let posNr = Math.floor((Math.random() * 2) + 1);
     document.querySelector("#rotte").classList.add("pos" + posNr);
-    document.querySelector("#rotte").classList.remove("fade_out");
-    document.querySelector("#rotte").classList.remove("pause");
-    document.querySelector("#rotte").classList.remove("rat_race");
-    document.querySelector("#rotte").classList.add("rat_race");
-    document.querySelector("#rotte").classList.add("show");
     console.log(posNr);
-
-
-
+    document.querySelector("#rotte").classList.add("rat_race");
+    document.querySelector("#rotte").addEventListener("animationend", tjekRotte);
+    //    document.querySelector("#rotte").classList.remove("dissappear");
 }
 
 document.querySelector("#settingsicon").addEventListener("click", showSettings);
 
-function showSettings() {
-    console.log("showSettings");
-    // Vis settings menu
-    document.querySelector("#settings").classList.remove("hide");
-    // put blur på titelscreen'
-    document.querySelector("#start").classList.add("blur");
-
-}
 //klik "X"
 document.querySelector("#exit").addEventListener("click", hideSettings);
 
 function hideSettings() {
     console.log("hideSettings");
     // fjern settings menu
-    document.querySelector("#settings").classList.add("hide");
+    document.querySelector("#settings_screen").classList.add("hide");
     // fjern settings menu
     document.querySelector("#gameOver").classList.add("hide");
     // fjern settings menu
@@ -143,12 +144,10 @@ function hideSettings() {
     document.querySelector("#game_background").classList.remove("blur");
 
 }
-// BARE INDTIL VIDERE ----------------------------------------------------
-document.querySelector("#points").addEventListener("click", gameOver);
-//------------------------------------------------------------------------
+
 function gameOver() {
     console.log("gameOver");
-
+    document.querySelector("#lort").play();
     document.querySelector("#gameOver").classList.remove("hide");
     document.querySelector("#game_background").classList.add("blur");
     document.querySelector("#rotte").classList.add("paused");
@@ -172,9 +171,7 @@ function restartGame() {
 
     showStart();
 }
-// BARE INDTIL VIDERE ----------------------------------------------------
-document.querySelector("#energy").addEventListener("click", levelComplete);
-//------------------------------------------------------------------------
+
 function levelComplete() {
     console.log("levelComplete");
     document.querySelector("#levelComplete").classList.remove("hide");
@@ -230,6 +227,7 @@ document.querySelector("#slimepoop ").addEventListener("click", slimForsvind);
 
 function slimForsvind() {
     console.log("clickSlime");
+
     this.classList.add("dissappear");
     points--;
     document.querySelector("#points").innerHTML = points;
@@ -255,6 +253,28 @@ function livStatus() {
         gameOver();
     }
 }
+
+
+
+function tidenGaar() {
+    console.log("tidengaar");
+
+    timeleft--;
+
+    if (timeleft > 0) {
+        setTimeout(tidenGaar, 1000);
+
+
+
+    } else {
+        gameOver();
+    }
+    console.log(timeleft);
+    document.querySelector("#time").textContent = timeleft;
+}
+
+
+// -------------------------------- points ------------------------------
 
 function gameStatus() {
     console.log("gameStatus");
@@ -318,3 +338,87 @@ function hus5() {
     console.log("hus5");
 
 }
+// -----------------------------------   settings/lyd -------------------------------------------------------------------------------
+function showSettings() {
+    console.log("showSettings");
+    // Vis settings menu
+    document.querySelector("#settings_screen").classList.remove("hide");
+    // put blur på titelscreen'
+    document.querySelector("#start").classList.add("blur");
+}
+
+function toggleSounds() {
+    console.log("toggleSounds");
+    //    showSettingsEffektSound = !showSettingsEffektSound;
+
+    if (showSettingsEffektSound == false) {
+        //her klikker vi lyden på
+        showSettingsEffektSound = true;
+        document.querySelector("#sfx_sprite").classList.add("off_on");
+        document.querySelector("#sfx_sprite").classList.remove("off");
+        document.querySelector("#sfx_sprite").addEventListener("animationend", soundsOn);
+        //        soundsOff();
+    } else {
+        //her kikker vi lyden af - slukker den
+        showSettingsEffektSound = false;
+        document.querySelector("#sfx_sprite").classList.add("on_off");
+        document.querySelector("#sfx_sprite").classList.remove("on");
+        document.querySelector("#sfx_sprite").addEventListener("animationen", soundsOff);
+        //        soundsOn();
+    }
+
+}
+
+function soundsOff() {
+    console.log("soundsOff function værdi er " + showSettingsEffektSound);
+    document.querySelector("#sfx_sprite").removeEventListener("animationend", soundsOff);
+    document.querySelector("#sfx_sprite").classList.remove("on_off");
+    document.querySelector("#sfx_sprite").classList.add("off");
+    //    her slukkes for efx
+    document.querySelector("#hapshaps").muted = true;
+    document.querySelector("#prut1").muted = true;
+
+}
+
+function soundsOn() {
+    console.log("soundsOn function værdi er " + showSettingsEffektSound);
+    document.querySelector("#sfx_sprite").removeEventListener("animationend", soundsOn);
+    document.querySelector("#sfx_sprite").classList.remove("off_on");
+    document.querySelector("#sfx_sprite").classList.add("on");
+    //    her tændes for efx
+    document.querySelector("#hapshaps").muted = false;
+    document.querySelector("#prut1").muted = false;
+}
+
+function toggleMusic() {
+    console.log("showSettingsMusic function " + showSettingsMusic);
+    showSettingsMusic = !showSettingsMusic;
+
+
+    if (showSettingsMusic == true) {
+
+        //        musicOn();
+
+    } else {
+
+        //        musicOff();
+    }
+}
+
+function musicOff() {
+    console.log("musicOff function værdi er " + showSettingsEffektSound);
+
+    //    her slukkes for musikken
+
+    document.querySelector("#musik").pause();
+}
+
+function musicOn() {
+    console.log("musicOn function værdi er " + showSettingsEffektSound);
+
+    //    her tændes for musikken
+
+    document.querySelector("#musik").play();
+}
+
+//-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
