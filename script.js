@@ -2,12 +2,19 @@ window.addEventListener("load", sidenVises);
 let life = 3;
 let points = 0;
 let timeleft = 30;
+let showSettingsEffektSound = true;
+let showSettingsMusic = true;
+
 
 
 function sidenVises() {
     console.log("sidenVises");
     // nulstil alting
     showStart();
+
+    document.querySelector("#setting_effekt_sound").addEventListener("click", toggleSounds);
+    document.querySelector("#music_sprite").addEventListener("click", toggleMusic);
+
 }
 
 function showStart() {
@@ -67,6 +74,7 @@ function startGame() {
 function rotteSpis() {
     console.log("spist");
     life--;
+    document.querySelector("#lorteLort").play();
     console.log(life);
     document.querySelector("#energy" + life).classList.remove("energy");
     //    this.classList.add("dissappear")
@@ -90,7 +98,7 @@ function tjekRotte() {
 
 
 function clickRotte() {
-
+    document.querySelector("#piv").play();
     console.log("ratforsvind");
     //rotte på pause
 
@@ -178,6 +186,9 @@ function levelComplete() {
     document.querySelector("#levelComplete").classList.add("show");
     document.querySelector("#game_background").classList.add("blur");
     document.querySelector("#restart").addEventListener("click", restartGame);
+    document.querySelector("#rotte").classList.add("paused");
+    document.querySelector("#slimepoop").classList.add("paused");
+    document.querySelector("#poo").classList.add("paused");
 }
 
 
@@ -194,8 +205,10 @@ document.querySelector("#poo").addEventListener("click", clickPoo);
 function clickPoo() {
     console.log(this);
     console.log("clickPoo");
+    document.querySelector("#yay").play();
     points++;
     document.querySelector("#points").innerHTML = points;
+
     this.classList.add("pause");
     this.classList.add("dissappear");
     //giv point!
@@ -227,6 +240,7 @@ document.querySelector("#slimepoop ").addEventListener("click", slimForsvind);
 
 function slimForsvind() {
     console.log("clickSlime");
+    document.querySelector("#evil").play();
 
     this.classList.add("dissappear");
     points--;
@@ -349,18 +363,17 @@ function showSettings() {
 
 function toggleSounds() {
     console.log("toggleSounds");
-    //    showSettingsEffektSound = !showSettingsEffektSound;
 
-    if (showSettingsEffektSound == false) {
+    if (showSettingsMusic == false) {
         //her klikker vi lyden på
-        showSettingsEffektSound = true;
+        showSettingsMusic = true;
         document.querySelector("#sfx_sprite").classList.add("off_on");
         document.querySelector("#sfx_sprite").classList.remove("off");
         document.querySelector("#sfx_sprite").addEventListener("animationend", soundsOn);
         //        soundsOff();
     } else {
         //her kikker vi lyden af - slukker den
-        showSettingsEffektSound = false;
+        showSettingsMusic = false;
         document.querySelector("#sfx_sprite").classList.add("on_off");
         document.querySelector("#sfx_sprite").classList.remove("on");
         document.querySelector("#sfx_sprite").addEventListener("animationen", soundsOff);
@@ -375,8 +388,12 @@ function soundsOff() {
     document.querySelector("#sfx_sprite").classList.remove("on_off");
     document.querySelector("#sfx_sprite").classList.add("off");
     //    her slukkes for efx
-    document.querySelector("#hapshaps").muted = true;
-    document.querySelector("#prut1").muted = true;
+    document.querySelector("#lorteLort").muted = true;
+    document.querySelector("#lort").muted = true;
+    document.querySelector("#piv").muted = true;
+    document.querySelector("#evil").muted = true;
+
+
 
 }
 
@@ -386,38 +403,58 @@ function soundsOn() {
     document.querySelector("#sfx_sprite").classList.remove("off_on");
     document.querySelector("#sfx_sprite").classList.add("on");
     //    her tændes for efx
-    document.querySelector("#hapshaps").muted = false;
-    document.querySelector("#prut1").muted = false;
+    document.querySelector("#lorteLort").muted = false;
+    document.querySelector("#lort").muted = false;
+    document.querySelector("#piv").muted = false;
+    document.querySelector("#evil").muted = false;
 }
 
 function toggleMusic() {
     console.log("showSettingsMusic function " + showSettingsMusic);
-    showSettingsMusic = !showSettingsMusic;
+    //    showSettingsMusic = !showSettingsMusic;
 
 
-    if (showSettingsMusic == true) {
+    if (showSettingsMusic == false) {
+        //jeg tænder for musikken
+
+        showSettingsMusic = true;
+        document.querySelector("#music_sprite").classList.add("off_on");
+        document.querySelector("#music_sprite").classList.remove("off");
+        document.querySelector("#music_sprite").addEventListener("animationend", musicOn);
 
         //        musicOn();
 
     } else {
+        //jeg slukker
+        showSettingsMusic = false;
+        document.querySelector("#music_sprite").classList.add("on_off");
+        document.querySelector("#music_sprite").classList.add("on");
+        document.querySelector("#music_sprite").addEventListener("animationend", musicOff);
+
 
         //        musicOff();
     }
 }
 
 function musicOff() {
-    console.log("musicOff function værdi er " + showSettingsEffektSound);
-
+    console.log("musicOff function værdi er " + showSettingsMusic);
+    document.querySelector("#music_sprite").removeEventListener("animationend", musicOff);
+    document.querySelector("#music_sprite").classList.remove("on_off");
+    document.querySelector("#music_sprite").classList.add("off");
     //    her slukkes for musikken
-
+    document.querySelector("#intro").muted = true;
+    document.querySelector("#intro").pause();
     document.querySelector("#musik").pause();
 }
 
 function musicOn() {
-    console.log("musicOn function værdi er " + showSettingsEffektSound);
-
+    console.log("musicOn function værdi er " + showSettingsMusic);
+    document.querySelector("#music_sprite").removeEventListener("animationend", musicOn);
+    document.querySelector("#music_sprite").classList.remove("off_on");
+    document.querySelector("#music_sprite").classList.add("on");
     //    her tændes for musikken
 
+    document.querySelector("#intro").muted = false;
     document.querySelector("#musik").play();
 }
 

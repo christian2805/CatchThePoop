@@ -52,6 +52,7 @@
     position: absolute;
     background-image: url(img/Poo.svg);
     background-size: 100%;
+
     width: 10vw;
     height: 5vw;
     cursor: -webkit-grab;
@@ -59,7 +60,21 @@
 
 }
 
+/*
 .poo_sprite {
+    position: absolute;
+    background-image: url(img/Poo.svg);
+    background-size: 100%;
+    width: 10vw;
+    height: 5vw;
+    cursor: -webkit-grab;
+    cursor: grab;
+
+}
+*/
+
+/*
+#poo_sprite {
     position: absolute;
     background-size: 500% 100%;
     background-image: url(img/poo_boom.svg);
@@ -67,6 +82,7 @@
     width: 10vw;
     height: 5vw;
 }
+*/
 
 
 
@@ -91,6 +107,7 @@
     background-size: 100%;
     cursor: -webkit-grab;
     cursor: grab;
+
 
 }
 
@@ -470,7 +487,7 @@
 
 .dissappear {
     animation-name: dissappear_kf;
-    animation-duration: .7s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-timing-function: cubic-bezier(.59, -0.56, .77, 1.34);
     animation-fill-mode: forwards;
@@ -627,14 +644,27 @@
 }
 */
 
-#sfx_sprite,
-#music_sprite {
+#sfx_sprite {
     background-size: 500% 100%;
-    width: 10vw;
-    height: 10vw;
-    left: 1vw;
+    width: 15vw;
+    height: 15vw;
     background-image: url(img/Toggle_sprite.svg);
     display: inline-block;
+    position: absolute;
+
+    top: 17vw;
+    left: 35vw;
+}
+
+#music_sprite {
+    background-size: 500% 100%;
+    width: 15vw;
+    height: 15vw;
+    left: 5vw;
+    background-image: url(img/Toggle_sprite.svg);
+    display: inline-block;
+    position: absolute;
+    left: 35vw;
 }
 
 
